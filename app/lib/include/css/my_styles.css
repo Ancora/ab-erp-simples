@@ -23,6 +23,7 @@ body.theme-indigo > section > aside.sidebar > div.user-info {
   -moz-background-size: cover !important;
   -o-background-size: cover !important;
   background-size: cover !important;
+  margin-top: 16px;
 }
 
 /* aside.sidebar {
