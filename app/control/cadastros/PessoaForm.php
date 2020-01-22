@@ -70,7 +70,6 @@ class PessoaForm extends TPage
         $ativo->addValidation("Ativo", new TRequiredValidator()); 
         $grupo->addValidation("Grupo", new TRequiredValidator()); 
         $nome->addValidation("Nome", new TRequiredValidator()); 
-        $cpf_cnpj->addValidation("CPF/CNPJ", new TRequiredValidator()); 
         $uf->addValidation("UF", new TRequiredValidator()); 
         $cidade_id->addValidation("Cidade", new TRequiredValidator()); 
 
@@ -221,7 +220,7 @@ class PessoaForm extends TPage
         $container = new TVBox;
         $container->style = 'width: 100%';
         $container->class = 'form-container';
-        // $container->add(new TXMLBreadCrumb('menu.xml', __CLASS__));
+        $container->add(TBreadCrumb::create(["Cadastros","Cadastro de Pessoas"]));
         $container->add($this->form);
 
         parent::add($container);
@@ -299,13 +298,17 @@ class PessoaForm extends TPage
             $data = $this->form->getData(); // get form data as array
 
             // Validação CPF ou CNPJ e e-mails
-            if($data->tipo_pessoa == "F")
-            {
-                (new TCPFValidator())->validate('CPF',$data->cpf_cnpj);
-            }
-            if($data->tipo_pessoa == "J")
-            {
-                (new TCNPJValidator())->validate('CNPJ',$data->cpf_cnpj);
+            if (($data->nome) != "Consumidor Final") {
+                if($data->tipo_pessoa == "F")
+                {
+                    (new TCPFValidator())->validate('CPF',$data->cpf_cnpj);
+                }
+                if($data->tipo_pessoa == "J")
+                {
+                    (new TCNPJValidator())->validate('CNPJ',$data->cpf_cnpj);
+                }
+            } else {
+                $data->cpf_cnpj = "000.000.000-00";
             }
 
             (new TEmailValidator())->validate('E-mail',$data->email);
