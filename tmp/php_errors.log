@@ -1,0 +1,10 @@
+[22-Jan-2020 13:17:43 America/Sao_Paulo] PHP Notice:  Undefined variable: breakTotal_usuario_registro in C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\app\control\relatorios\PessoaReport.php on line 376
+[22-Jan-2020 13:17:43 America/Sao_Paulo] PHP Stack trace:
+[22-Jan-2020 13:17:43 America/Sao_Paulo] PHP   1. {main}() C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\engine.php:0
+[22-Jan-2020 13:17:43 America/Sao_Paulo] PHP   2. TApplication::run() C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\engine.php:74
+[22-Jan-2020 13:17:43 America/Sao_Paulo] PHP   3. Adianti\Core\AdiantiCoreApplication::run() C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\engine.php:27
+[22-Jan-2020 13:17:43 America/Sao_Paulo] PHP   4. PessoaReport->show() C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\lib\adianti\core\AdiantiCoreApplication.php:82
+[22-Jan-2020 13:17:43 America/Sao_Paulo] PHP   5. PessoaReport->run() C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\lib\adianti\control\TPage.php:213
+[22-Jan-2020 13:17:43 America/Sao_Paulo] PHP   6. call_user_func:{C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\lib\adianti\control\TPage.php:59}() C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\lib\adianti\control\TPage.php:59
+[22-Jan-2020 13:17:43 America/Sao_Paulo] PHP   7. PessoaReport->onGeneratePdf() C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\lib\adianti\control\TPage.php:59
+[22-Jan-2020 13:17:43 America/Sao_Paulo] PHP   8. PessoaReport->onGenerate() C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\app\control\relatorios\PessoaReport.php:91

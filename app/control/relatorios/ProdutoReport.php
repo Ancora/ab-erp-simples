@@ -384,6 +384,14 @@ class ProdutoReport extends TPage
 
                     $tr->addRow();
 
+                    $tr->addCell('', 'center', 'breakTotal');
+                    $tr->addCell('', 'center', 'breakTotal');
+                    $tr->addCell('', 'center', 'breakTotal');
+                    $tr->addCell('', 'center', 'breakTotal');
+                    $tr->addCell($breakTotal_descricao, 'left', 'breakTotal');
+                    $tr->addCell('', 'center', 'breakTotal');
+                    $tr->addCell('', 'center', 'breakTotal');
+
                     $tr->addRow();
 
                     $grandTotal_descricao = count($grandTotal['descricao']);

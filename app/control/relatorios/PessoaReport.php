@@ -368,6 +368,13 @@ class PessoaReport extends TPage
 
                     $tr->addRow();
 
+                    $tr->addCell('', 'center', 'breakTotal');
+                    $tr->addCell('', 'center', 'breakTotal');
+                    $tr->addCell('', 'center', 'breakTotal');
+                    $tr->addCell('', 'center', 'breakTotal');
+                    $tr->addCell('', 'center', 'breakTotal');
+                    $tr->addCell($breakTotal_usuario_registro, 'left', 'breakTotal');
+
                     $tr->addRow();
 
                     $grandTotal_usuario_registro = count($grandTotal['usuario_registro']);
