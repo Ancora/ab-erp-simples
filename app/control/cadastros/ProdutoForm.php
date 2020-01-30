@@ -41,9 +41,9 @@ class ProdutoForm extends TPage
         $data_atualizacao = new TDateTime('data_atualizacao');
         $usuario_atualizacao = new TEntry('usuario_atualizacao');
 
-        $tipo_produto_id->addValidation("Tipo", new TRequiredValidator()); 
-        $descricao->addValidation("Descrição", new TRequiredValidator()); 
-        $medida_id->addValidation("Unidade de Medida", new TRequiredValidator()); 
+        $tipo_produto_id->addValidation("Tipo", new TRequiredValidator());
+        $descricao->addValidation("Descrição", new TRequiredValidator());
+        $medida_id->addValidation("Unidade de Medida", new TRequiredValidator());
 
         $ativo->addItems(['S'=>'Sim','N'=>'Não']);
         $ativo->setValue('Sim');
@@ -110,7 +110,7 @@ class ProdutoForm extends TPage
 
         // create the form actions
         $btn_onsave = $this->form->addAction("Salvar", new TAction([$this, 'onSave']), 'far:save #ffffff');
-        $btn_onsave->addStyleClass('btn-primary'); 
+        $btn_onsave->addStyleClass('btn-primary');
 
         $btn_onclear = $this->form->addAction("Limpar formulário", new TAction([$this, 'onClear']), 'fas:eraser #dd5a43');
 
@@ -125,7 +125,7 @@ class ProdutoForm extends TPage
 
     }
 
-    public function onSave($param = null) 
+    public function onSave($param = null)
     {
         try
         {
@@ -141,29 +141,29 @@ class ProdutoForm extends TPage
 
             $this->form->validate(); // validate form data
 
-            $object = new Produto(); // create an empty object 
+            $object = new Produto(); // create an empty object
 
             $data = $this->form->getData(); // get form data as array
             $object->fromArray( (array) $data); // load the object with data
 
             // Registrando data de cadastro (data_registro) e data de atualização (data_atualizacao) e usuário logado
-            if(!$object->id) 
+            if(!$object->id)
             {
                 $object->data_registro = date('Y-m-d H:i:s');
-                $object->usuario_registro = TSession::getValue('username');
+                $object->usuario_registro = TSession::getValue('userid');
             }
 
             if($object->id)
             {
                 $object->data_atualizacao = date('Y-m-d H:i:s');
-                $object->usuario_atualizacao = TSession::getValue('username');
+                $object->usuario_atualizacao = TSession::getValue('userid');
             }
             // Fim registro de datas e usuário logado
 
-            $object->store(); // save the object 
+            $object->store(); // save the object
 
             // get the generated {PRIMARY_KEY}
-            $data->id = $object->id; 
+            $data->id = $object->id;
 
             $this->form->setData($data); // fill form data
 
@@ -192,7 +192,7 @@ class ProdutoForm extends TPage
         }
         catch (Exception $e) // in case of exception
         {
-            //</catchAutoCode> 
+            //</catchAutoCode>
 
             new TMessage('error', $e->getMessage()); // shows the exception error message
             $this->form->setData( $this->form->getData() ); // keep form data
@@ -209,11 +209,11 @@ class ProdutoForm extends TPage
                 $key = $param['key'];  // get the parameter $key
                 TTransaction::open(self::$database); // open a transaction
 
-                $object = new Produto($key); // instantiates the Active Record 
+                $object = new Produto($key); // instantiates the Active Record
 
-                $this->form->setData($object); // fill the form 
+                $this->form->setData($object); // fill the form
 
-                TTransaction::close(); // close the transaction 
+                TTransaction::close(); // close the transaction
             }
             else
             {
@@ -240,7 +240,7 @@ class ProdutoForm extends TPage
     public function onShow($param = null)
     {
 
-    } 
+    }
 
 }
 

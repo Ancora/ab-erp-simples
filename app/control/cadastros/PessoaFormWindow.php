@@ -37,13 +37,13 @@ class PessoaFormWindow extends TWindow
 
         $tipo_pessoa->setChangeAction(new TAction([$this,'onChangeTipoPessoa']));
 
-        $tipo_pessoa->addValidation("Tipo", new TRequiredValidator()); 
-        $ativo->addValidation("Ativo", new TRequiredValidator()); 
-        $grupo->addValidation("Grupo", new TRequiredValidator()); 
-        $nome->addValidation("Nome/Razão Social", new TRequiredValidator()); 
-        $cpf_cnpj->addValidation("CPF/CNPJ", new TRequiredValidator()); 
-        $uf->addValidation("UF", new TRequiredValidator()); 
-        $cidade_id->addValidation("Cidade", new TRequiredValidator()); 
+        $tipo_pessoa->addValidation("Tipo", new TRequiredValidator());
+        $ativo->addValidation("Ativo", new TRequiredValidator());
+        $grupo->addValidation("Grupo", new TRequiredValidator());
+        $nome->addValidation("Nome/Razão Social", new TRequiredValidator());
+        $cpf_cnpj->addValidation("CPF/CNPJ", new TRequiredValidator());
+        $uf->addValidation("UF", new TRequiredValidator());
+        $cidade_id->addValidation("Cidade", new TRequiredValidator());
 
         $ativo->setValue('Sim');
         $ativo->setDefaultOption(false);
@@ -75,7 +75,7 @@ class PessoaFormWindow extends TWindow
 
         // create the form actions
         $btn_onsave = $this->form->addAction("Salvar", new TAction([$this, 'onSave']), 'far:save #ffffff');
-        $btn_onsave->addStyleClass('btn-primary'); 
+        $btn_onsave->addStyleClass('btn-primary');
 
         $btn_onclear = $this->form->addAction("Limpar formulário", new TAction([$this, 'onClear']), 'fas:eraser #dd5a43');
 
@@ -83,9 +83,9 @@ class PessoaFormWindow extends TWindow
 
     }
 
-    public static function onChangeTipoPessoa($param = null) 
+    public static function onChangeTipoPessoa($param = null)
     {
-        try 
+        try
         {
             //code here
             if( isset($param['key']) && $param['key'] == 'F')
@@ -108,13 +108,13 @@ class PessoaFormWindow extends TWindow
             }
 
         }
-        catch (Exception $e) 
+        catch (Exception $e)
         {
-            new TMessage('error', $e->getMessage());    
+            new TMessage('error', $e->getMessage());
         }
     }
 
-    public function onSave($param = null) 
+    public function onSave($param = null)
     {
         try
         {
@@ -130,7 +130,7 @@ class PessoaFormWindow extends TWindow
 
             $this->form->validate(); // validate form data
 
-            $object = new Pessoa(); // create an empty object 
+            $object = new Pessoa(); // create an empty object
 
             $data = $this->form->getData(); // get form data as array
 
@@ -149,22 +149,22 @@ class PessoaFormWindow extends TWindow
             $object->fromArray( (array) $data); // load the object with data
 
             // Registrando data de cadastro (data_registro) e usuário logado
-            if(!$object->id) 
+            if(!$object->id)
             {
                 $object->data_registro = date('Y-m-d H:i:s');
-                $object->usuario_registro = TSession::getValue('username');
+                $object->usuario_registro = TSession::getValue('userid');
             }
 
             // Fim registro de datas e usuário logado
 
-            $object->store(); // save the object 
+            $object->store(); // save the object
 
             $repository = PessoaGrupo::where('pessoa_id', '=', $object->id);
-            $repository->delete(); 
+            $repository->delete();
 
-            if ($data->grupo) 
+            if ($data->grupo)
             {
-                foreach ($data->grupo as $grupo_value) 
+                foreach ($data->grupo as $grupo_value)
                 {
                     $pessoa_grupo = new PessoaGrupo;
 
@@ -175,7 +175,7 @@ class PessoaFormWindow extends TWindow
             }
 
             // get the generated {PRIMARY_KEY}
-            $data->id = $object->id; 
+            $data->id = $object->id;
 
             $this->form->setData($data); // fill form data
             TTransaction::close(); // close the transaction
@@ -196,12 +196,12 @@ class PessoaFormWindow extends TWindow
                TCombo::reload('', $data->oculto, $items);
             }
 
-                TWindow::closeWindow(parent::getId()); 
+                TWindow::closeWindow(parent::getId());
 
         }
         catch (Exception $e) // in case of exception
         {
-            //</catchAutoCode> 
+            //</catchAutoCode>
 
             new TMessage('error', $e->getMessage()); // shows the exception error message
             $this->form->setData( $this->form->getData() ); // keep form data
@@ -218,14 +218,14 @@ class PessoaFormWindow extends TWindow
                 $key = $param['key'];  // get the parameter $key
                 TTransaction::open(self::$database); // open a transaction
 
-                $object = new Pessoa($key); // instantiates the Active Record 
+                $object = new Pessoa($key); // instantiates the Active Record
 
                 $criteria = TCriteria::create(['pessoa_id'=>$object->id]);
                 $object->grupo = PessoaGrupo::getIndexedArray('grupo_id', 'grupo_id', $criteria);
 
-                $this->form->setData($object); // fill the form 
+                $this->form->setData($object); // fill the form
 
-                TTransaction::close(); // close the transaction 
+                TTransaction::close(); // close the transaction
             }
             else
             {
@@ -235,7 +235,7 @@ class PessoaFormWindow extends TWindow
                 if (!empty($param['oculto'])) {
                    $object = new stdClass;
                    $object->oculto = $param['oculto'];
-                   $this->form->setData($object); 
+                   $this->form->setData($object);
                 }
             }
         }
@@ -259,7 +259,7 @@ class PessoaFormWindow extends TWindow
     public function onShow($param = null)
     {
 
-    } 
+    }
 
 }
 

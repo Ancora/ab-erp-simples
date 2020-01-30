@@ -27,9 +27,9 @@ class MovimentoForm extends TPage
         $criteria_tipo_movimento_id = new TCriteria();
 
         $filterVar = TipoMovimento::edc;
-        $criteria_tipo_movimento_id->add(new TFilter('id', '!=', $filterVar)); 
+        $criteria_tipo_movimento_id->add(new TFilter('id', '!=', $filterVar));
         $filterVar = TipoMovimento::edv;
-        $criteria_tipo_movimento_id->add(new TFilter('id', '!=', $filterVar)); 
+        $criteria_tipo_movimento_id->add(new TFilter('id', '!=', $filterVar));
 
         $id = new TEntry('id');
         $tipo_movimento_id = new TDBCombo('tipo_movimento_id', 'ancora907_erpsimples', 'TipoMovimento', 'id', '{descricao}','descricao asc' , $criteria_tipo_movimento_id );
@@ -66,10 +66,10 @@ class MovimentoForm extends TPage
         $tipo_movimento_id->setChangeAction(new TAction([$this,'onTipoMovimento']));
         $produtos_movimento_movimento_produto_id->setChangeAction(new TAction([$this,'onTipoSaldos']));
 
-        $tipo_movimento_id->addValidation("Tipo Movimento", new TRequiredValidator()); 
-        $situacao_id->addValidation("Situação", new TRequiredValidator()); 
-        $pessoa_id->addValidation("Cliente/Fornecedor", new TRequiredValidator()); 
-        $data_abertura->addValidation("Data Abertura", new TRequiredValidator()); 
+        $tipo_movimento_id->addValidation("Tipo Movimento", new TRequiredValidator());
+        $situacao_id->addValidation("Situação", new TRequiredValidator());
+        $pessoa_id->addValidation("Cliente/Fornecedor", new TRequiredValidator());
+        $data_abertura->addValidation("Data Abertura", new TRequiredValidator());
 
         $pessoa_id->setMinLength(2);
         $produtos_movimento_movimento_produto_id->setMinLength(2);
@@ -174,7 +174,7 @@ class MovimentoForm extends TPage
         $row10 = $this->form->addFields([new TLabel("Lote", null, '14px', null, '100%'),$produtos_movimento_movimento_lote],[new TLabel("Data de Validade", null, '14px', null, '100%'),$produtos_movimento_movimento_data_validade],[new TLabel("Valor ICMS", null, '14px', null, '100%'),$produtos_movimento_movimento_vlr_icms],[new TLabel("Valor IPI", null, '14px', null, '100%'),$produtos_movimento_movimento_vlr_ipi]);
         $row10->layout = [' col-sm-4',' col-sm-4',' col-sm-2','col-sm-2'];
 
-        $row11 = $this->form->addFields([$produtos_movimento_movimento_id]);         
+        $row11 = $this->form->addFields([$produtos_movimento_movimento_id]);
         $add_produtos_movimento_movimento = new TButton('add_produtos_movimento_movimento');
 
         $action_produtos_movimento_movimento = new TAction(array($this, 'onAddProdutosMovimentoMovimento'));
@@ -202,26 +202,26 @@ class MovimentoForm extends TPage
         $column_produtos_movimento_movimento_vlr_unitario_transformed = $this->produtos_movimento_movimento_list->addQuickColumn("Vlr Unit", 'produtos_movimento_movimento_vlr_unitario', 'right' , '19%');
         $column_calculated_1 = $this->produtos_movimento_movimento_list->addQuickColumn("Vlr Total", '=( {produtos_movimento_movimento_qtd} * {produtos_movimento_movimento_vlr_unitario}  )', 'right' , '10%');
 
-        $column_produtos_movimento_movimento_qtd->setTotalFunction( function($values) { 
-            return array_sum((array) $values); 
-        }); 
+        $column_produtos_movimento_movimento_qtd->setTotalFunction( function($values) {
+            return array_sum((array) $values);
+        });
 
-        $column_produtos_movimento_movimento_vlr_icms_transformed->setTotalFunction( function($values) { 
-            return array_sum((array) $values); 
-        }); 
+        $column_produtos_movimento_movimento_vlr_icms_transformed->setTotalFunction( function($values) {
+            return array_sum((array) $values);
+        });
 
-        $column_produtos_movimento_movimento_vlr_ipi_transformed->setTotalFunction( function($values) { 
-            return array_sum((array) $values); 
-        }); 
+        $column_produtos_movimento_movimento_vlr_ipi_transformed->setTotalFunction( function($values) {
+            return array_sum((array) $values);
+        });
 
-        $column_calculated_1->setTotalFunction( function($values) { 
-            return array_sum((array) $values); 
-        }); 
+        $column_calculated_1->setTotalFunction( function($values) {
+            return array_sum((array) $values);
+        });
 
         $this->produtos_movimento_movimento_list->createModel();
         $this->form->addContent([$this->produtos_movimento_movimento_list]);
 
-        $column_produtos_movimento_movimento_data_validade_transformed->setTransformer(function($value, $object, $row) 
+        $column_produtos_movimento_movimento_data_validade_transformed->setTransformer(function($value, $object, $row)
         {
             if(!empty(trim($value)))
             {
@@ -237,7 +237,7 @@ class MovimentoForm extends TPage
             }
         });
 
-        $column_produtos_movimento_movimento_vlr_icms_transformed->setTransformer(function($value, $object, $row) 
+        $column_produtos_movimento_movimento_vlr_icms_transformed->setTransformer(function($value, $object, $row)
         {
             if(!$value)
             {
@@ -254,7 +254,7 @@ class MovimentoForm extends TPage
             }
         });
 
-        $column_produtos_movimento_movimento_vlr_ipi_transformed->setTransformer(function($value, $object, $row) 
+        $column_produtos_movimento_movimento_vlr_ipi_transformed->setTransformer(function($value, $object, $row)
         {
             if(!$value)
             {
@@ -271,7 +271,7 @@ class MovimentoForm extends TPage
             }
         });
 
-        $column_produtos_movimento_movimento_vlr_unitario_transformed->setTransformer(function($value, $object, $row) 
+        $column_produtos_movimento_movimento_vlr_unitario_transformed->setTransformer(function($value, $object, $row)
         {
             if(!$value)
             {
@@ -288,7 +288,7 @@ class MovimentoForm extends TPage
             }
         });
 
-        $column_calculated_1->setTransformer(function($value, $object, $row) 
+        $column_calculated_1->setTransformer(function($value, $object, $row)
         {
             if(!$value)
             {
@@ -307,7 +307,7 @@ class MovimentoForm extends TPage
 
         // create the form actions
         $btn_onsave = $this->form->addAction("Salvar", new TAction([$this, 'onSave']), 'fas:save #ffffff');
-        $btn_onsave->addStyleClass('btn-primary'); 
+        $btn_onsave->addStyleClass('btn-primary');
 
         $btn_onclear = $this->form->addAction("Limpar formulário", new TAction([$this, 'onClear']), 'fas:eraser #dd5a43');
 
@@ -322,9 +322,9 @@ class MovimentoForm extends TPage
 
     }
 
-    public static function onTipoMovimento($param = null) 
+    public static function onTipoMovimento($param = null)
     {
-        try 
+        try
         {
 
             TTransaction::open(self::$database);
@@ -341,7 +341,7 @@ class MovimentoForm extends TPage
             foreach ($tipos as $tipo)
             {
                 if (($object->tipo_movimento_id == 3 || $object->tipo_movimento_id == 7) && ($tipo->id == 4)) {
-                    $options[ $tipo->id ] = $tipo->descricao;    
+                    $options[ $tipo->id ] = $tipo->descricao;
                 } elseif (($object->tipo_movimento_id == 2 || $object->tipo_movimento_id == 6) && ($tipo->id == 10)) {
                     $options[ $tipo->id ] = $tipo->descricao;
                 } elseif (($object->tipo_movimento_id == 1) && ($tipo->id == 2 || $tipo->id == 3 || $tipo->id == 8)) {
@@ -360,15 +360,15 @@ class MovimentoForm extends TPage
             TCombo::reload(self::$formName, 'situacao_id', $options);
 
         }
-        catch (Exception $e) 
+        catch (Exception $e)
         {
-            new TMessage('error', $e->getMessage());    
+            new TMessage('error', $e->getMessage());
         }
     }
 
-    public static function onTipoSaldos($param = null) 
+    public static function onTipoSaldos($param = null)
     {
-        try 
+        try
         {
 
             TTransaction::open(self::$database);
@@ -394,13 +394,13 @@ class MovimentoForm extends TPage
             TTransaction::close();
 
         }
-        catch (Exception $e) 
+        catch (Exception $e)
         {
-            new TMessage('error', $e->getMessage());    
+            new TMessage('error', $e->getMessage());
         }
     }
 
-    public function onSave($param = null) 
+    public function onSave($param = null)
     {
         try
         {
@@ -416,7 +416,7 @@ class MovimentoForm extends TPage
 
             $this->form->validate(); // validate form data
 
-            $object = new Movimento(); // create an empty object 
+            $object = new Movimento(); // create an empty object
 
             $data = $this->form->getData(); // get form data as array
             $object->fromArray( (array) $data); // load the object with data
@@ -425,24 +425,24 @@ class MovimentoForm extends TPage
             if(!$object->id)
             {
                 $object->data_registro = date('Y-m-d H:i:s');
-                $object->usuario_registro = TSession::getValue('username');
+                $object->usuario_registro = TSession::getValue('userid');
             }
 
             if($object->id)
             {
                 $object->data_atualizacao = date('Y-m-d H:i:s');
-                $object->usuario_atualizacao = TSession::getValue('username');
+                $object->usuario_atualizacao = TSession::getValue('userid');
             }
             // Fim registro de datas e usuário logado
 
-            $object->store(); // save the object 
+            $object->store(); // save the object
 
             $this->fireEvents($object);
 
-            $produtos_movimento_movimento_items = $this->storeItems('ProdutosMovimento', 'movimento_id', $object, 'produtos_movimento_movimento', function($masterObject, $detailObject){ 
+            $produtos_movimento_movimento_items = $this->storeItems('ProdutosMovimento', 'movimento_id', $object, 'produtos_movimento_movimento', function($masterObject, $detailObject){
 
                 // Calcular Saldos e salvar
-                /** 
+                /**
                 situacao_id     sigla   descrição                   tipo_movimento_id   sigla   descrição
                 1               ABE     Aberto                      1                   EPC e   Entrada por Compra
                 2               PNO     Pendente no Operacional     2                   DDV e   Devolução de Venda
@@ -461,14 +461,14 @@ class MovimentoForm extends TPage
                 $saldos = new Saldos( $detailObject->produto_id );
 
                 if($saldos) {
-                    // Acrescentar valor total do item no valor total do Movimento, se abertura do Movimento 
+                    // Acrescentar valor total do item no valor total do Movimento, se abertura do Movimento
                     if (!$masterObject->situacao_id_ant) {
-                        $masterObject->vlr_total += $detailObject->vlr_unitario * $detailObject->qtd;    
+                        $masterObject->vlr_total += $detailObject->vlr_unitario * $detailObject->qtd;
                     } else {
                         $masterObject->situacao_id = $masterObject->situacao_id_ant;
                     }
 
-                    // 1 - EPC       
+                    // 1 - EPC
                     if ($masterObject->tipo_movimento_id == 1) {
                         $masterObject->tipo_estoque = "E";
                         // 2 - PNO
@@ -477,7 +477,7 @@ class MovimentoForm extends TPage
                         // 3 - ENO ou 8 - ENP
                         } elseif ($masterObject->situacao_id == 3 || $masterObject->situacao_id == 8) {
                             if ($masterObject->situacao_id_ant == 2 || $masterObject->situacao_id_ant == 8) {
-                                $saldos->qtd_aguardando -= $detailObject->qtd;   
+                                $saldos->qtd_aguardando -= $detailObject->qtd;
                             }
                             $saldos->qtd_estoque += $detailObject->qtd;
                         }
@@ -493,29 +493,29 @@ class MovimentoForm extends TPage
                         // 10 - DEV
                         $masterObject->situacao_id = 10;
                         $saldos->qtd_estoque -= $detailObject->qtd;
-                    // 5 - SPV 
+                    // 5 - SPV
                     } elseif ($masterObject->tipo_movimento_id == 5) {
                         $masterObject->tipo_estoque = "S";
-                        // 2 - PNO 
+                        // 2 - PNO
                         if ($masterObject->situacao_id == 2) {
                             $saldos->qtd_reservado += $detailObject->qtd;
-                        // 3 - ENO ou 9 - SAP 
+                        // 3 - ENO ou 9 - SAP
                         } elseif ($masterObject->situacao_id == 3 || $masterObject->situacao_id == 9) {
                             if ($masterObject->situacao_id_ant == 2 || $masterObject->situacao_id_ant == 9) {
-                                $saldos->qtd_reservado -= $detailObject->qtd;   
+                                $saldos->qtd_reservado -= $detailObject->qtd;
                             }
                             $saldos->qtd_estoque -= $detailObject->qtd;
                         }
                     // 7 - CDV (depende de 2 - PNO)
                     } elseif ($masterObject->tipo_movimento_id == 7) {
                         $masterObject->tipo_estoque = "E";
-                        // 4 - CAN 
+                        // 4 - CAN
                         $masterObject->situacao_id = 4;
                         $saldos->qtd_reservado -= $detailObject->qtd;
                     // 2 - DDV (depende de 3 - ENO)
                     } elseif ($masterObject->tipo_movimento_id == 2) {
                         $masterObject->tipo_estoque = "E";
-                        // 10 - DEV 
+                        // 10 - DEV
                         $masterObject->situacao_id = 10;
                         $saldos->qtd_estoque += $detailObject->qtd;
                     }
@@ -524,11 +524,11 @@ class MovimentoForm extends TPage
                 $saldos->store();
                 // -----------
 
-            }); 
+            });
             $object->store();
 
             // get the generated {PRIMARY_KEY}
-            $data->id = $object->id; 
+            $data->id = $object->id;
 
             $this->form->setData($data); // fill form data
             TTransaction::close(); // close the transaction
@@ -545,7 +545,7 @@ class MovimentoForm extends TPage
         }
         catch (Exception $e) // in case of exception
         {
-            //</catchAutoCode>  
+            //</catchAutoCode>
 
             new TMessage('error', $e->getMessage()); // shows the exception error message
             $this->form->setData( $this->form->getData() ); // keep form data
@@ -562,9 +562,9 @@ class MovimentoForm extends TPage
                 $key = $param['key'];  // get the parameter $key
                 TTransaction::open(self::$database); // open a transaction
 
-                $object = new Movimento($key); // instantiates the Active Record 
+                $object = new Movimento($key); // instantiates the Active Record
 
-                $produtos_movimento_movimento_items = $this->loadItems('ProdutosMovimento', 'movimento_id', $object, 'produtos_movimento_movimento', function($masterObject, $detailObject, $objectItems){ 
+                $produtos_movimento_movimento_items = $this->loadItems('ProdutosMovimento', 'movimento_id', $object, 'produtos_movimento_movimento', function($masterObject, $detailObject, $objectItems){
 
                     $masterObject->situacao_id_ant = $masterObject->situacao_id;
 
@@ -599,16 +599,16 @@ class MovimentoForm extends TPage
                         $objectItems->tipo_movimento_id = $detailObject->tipo_movimento_id;
                     }
 
-// code here 
+// code here
 
-                }); 
+                });
 
-                $this->form->setData($object); // fill the form 
+                $this->form->setData($object); // fill the form
 
                 $this->fireEvents($object);
                 $this->onReload();
 
-                TTransaction::close(); // close the transaction 
+                TTransaction::close(); // close the transaction
             }
             else
             {
@@ -644,19 +644,19 @@ class MovimentoForm extends TPage
             if(!$data->produtos_movimento_movimento_produto_id)
             {
                 throw new Exception(AdiantiCoreTranslator::translate('The field ^1 is required', "Produto"));
-            }             
+            }
             if(!$data->produtos_movimento_movimento_qtd)
             {
                 throw new Exception(AdiantiCoreTranslator::translate('The field ^1 is required', "Qtd"));
-            }             
+            }
             if(!$data->produtos_movimento_movimento_vlr_unitario)
             {
                 throw new Exception(AdiantiCoreTranslator::translate('The field ^1 is required', "Valor Unitário"));
-            }             
+            }
 
             $produtos_movimento_movimento_items = TSession::getValue('produtos_movimento_movimento_items');
             $key = isset($data->produtos_movimento_movimento_id) && $data->produtos_movimento_movimento_id ? $data->produtos_movimento_movimento_id : uniqid();
-            $fields = []; 
+            $fields = [];
 
             $fields['produtos_movimento_movimento_produto_id'] = $data->produtos_movimento_movimento_produto_id;
             $fields['produtos_movimento_movimento_qtd'] = $data->produtos_movimento_movimento_qtd;
@@ -762,24 +762,24 @@ class MovimentoForm extends TPage
 
     public function onReloadProdutosMovimentoMovimento( $param )
     {
-        $items = TSession::getValue('produtos_movimento_movimento_items'); 
+        $items = TSession::getValue('produtos_movimento_movimento_items');
 
-        $this->produtos_movimento_movimento_list->clear(); 
+        $this->produtos_movimento_movimento_list->clear();
 
-        if($items) 
-        { 
-            $cont = 1; 
-            foreach ($items as $key => $item) 
+        if($items)
+        {
+            $cont = 1;
+            foreach ($items as $key => $item)
             {
                 $rowItem = new StdClass;
 
-                $action_del = new TAction(array($this, 'onDeleteProdutosMovimentoMovimento')); 
+                $action_del = new TAction(array($this, 'onDeleteProdutosMovimentoMovimento'));
                 $action_del->setParameter('produtos_movimento_movimento_id_row_id', $key);
                 $action_del->setParameter('row_data', base64_encode(serialize($item)));
                 $action_del->setParameter('key', $key);
 
-                $action_edi = new TAction(array($this, 'onEditProdutosMovimentoMovimento'));  
-                $action_edi->setParameter('produtos_movimento_movimento_id_row_id', $key);  
+                $action_edi = new TAction(array($this, 'onEditProdutosMovimentoMovimento'));
+                $action_edi->setParameter('produtos_movimento_movimento_id_row_id', $key);
                 $action_edi->setParameter('row_data', base64_encode(serialize($item)));
                 $action_edi->setParameter('key', $key);
 
@@ -826,9 +826,9 @@ class MovimentoForm extends TPage
                 $row = $this->produtos_movimento_movimento_list->addItem($rowItem);
 
                 $cont++;
-            } 
-        } 
-    } 
+            }
+        }
+    }
 
     public function onShow($param = null)
     {
@@ -836,7 +836,7 @@ class MovimentoForm extends TPage
 
         $this->onReload();
 
-    } 
+    }
 
     public function fireEvents( $object )
     {
@@ -880,7 +880,7 @@ class MovimentoForm extends TPage
             }
         }
         TForm::sendData(self::$formName, $obj);
-    }  
+    }
 
     public function onReload($params = null)
     {
@@ -889,10 +889,10 @@ class MovimentoForm extends TPage
         $this->onReloadProdutosMovimentoMovimento($params);
     }
 
-    public function show() 
-    { 
-        if (!$this->loaded AND (!isset($_GET['method']) OR $_GET['method'] !== 'onReload') ) 
-        { 
+    public function show()
+    {
+        if (!$this->loaded AND (!isset($_GET['method']) OR $_GET['method'] !== 'onReload') )
+        {
             $this->onReload( func_get_arg(0) );
         }
         parent::show();

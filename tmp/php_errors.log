@@ -8,3 +8,19 @@
 [22-Jan-2020 13:17:43 America/Sao_Paulo] PHP   6. call_user_func:{C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\lib\adianti\control\TPage.php:59}() C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\lib\adianti\control\TPage.php:59
 [22-Jan-2020 13:17:43 America/Sao_Paulo] PHP   7. PessoaReport->onGeneratePdf() C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\lib\adianti\control\TPage.php:59
 [22-Jan-2020 13:17:43 America/Sao_Paulo] PHP   8. PessoaReport->onGenerate() C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\app\control\relatorios\PessoaReport.php:91
+[28-Jan-2020 01:11:10 America/Sao_Paulo] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'ancor907_erpsimples_log' in C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\lib\adianti\database\TConnection.php:99
+Stack trace:
+#0 C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\lib\adianti\database\TConnection.php(99): PDO->__construct('mysql:host=loca...', 'root', 'root', Array)
+#1 C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\lib\adianti\database\TConnection.php(47): Adianti\Database\TConnection::openArray(Array)
+#2 C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\lib\adianti\database\TTransaction.php(59): Adianti\Database\TConnection::open('log')
+#3 C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\app\service\log\SystemAccessLogService.class.php(58): Adianti\Database\TTransaction::open('log')
+#4 C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\app\control\admin\LoginForm.php(226): SystemAccessLogService::registerLogout()
+#5 [internal function]: LoginFor in C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\lib\adianti\database\TConnection.php on line 99
+[28-Jan-2020 01:14:55 America/Sao_Paulo] PHP Fatal error:  Uncaught Error: Call to a member function getProgramsList() on null in C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\app\control\SearchInputBox.class.php:46
+Stack trace:
+#0 C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\app\control\SearchInputBox.class.php(24): SearchInputBox::getPrograms()
+#1 C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\lib\adianti\core\AdiantiCoreApplication.php(80): SearchInputBox->__construct(Array)
+#2 C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\engine.php(27): Adianti\Core\AdiantiCoreApplication::run('0')
+#3 C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\engine.php(74): TApplication::run()
+#4 {main}
+  thrown in C:\wamp64319\www\ancora-ti.com.br\demos\adianti\ab-erp-simples\app\control\SearchInputBox.class.php on line 46
